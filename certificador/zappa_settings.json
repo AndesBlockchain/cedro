@@ -1,0 +1,10 @@
+{
+    "dev": {
+        "aws_region": "sa-east-1",
+        "django_settings": "certificador.settings",
+        "profile_name": "default",
+        "project_name": "certificador",
+        "runtime": "python3.7",
+        "s3_bucket": "zappa-epgurnm95"
+    }
+}

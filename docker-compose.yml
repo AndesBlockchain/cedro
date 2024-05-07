@@ -1,0 +1,86 @@
+services:
+
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    depends_on:
+      - rabbitmq
+      - db
+    networks:
+      - django_network
+    environment:
+      - DJANGO_SETTINGS_MODULE=certificador.settings
+      - AWS_ACCESS_KEY=AKIAWTWZXR4WNWTUA4EM
+      - AWS_SECRET_KEY=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
+      - REGION_NAME=sa-east-1
+      - CELERY_BROKER_URL=pyamqp://guest@rabbitmq:5672//
+      - POSTGRES_DB=certificador
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres_password
+      - POSTGRES_HOST=db
+      - DJANGO_SUPERUSER_EMAIL=patricio.lopez@andesblockchain.com
+      - DJANGO_SUPERUSER_USERNAME=plopez
+      - DJANGO_SUPERUSER_PASSWORD=11741174
+
+  db:
+    image: postgres:13
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=certificador
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres_password
+    ports:
+      - "5432:5432"
+    networks:
+      - django_network
+
+  celery:
+    build: .
+    command: celery -A certificador worker -l INFO -B
+    depends_on:
+      - rabbitmq
+      - web
+    volumes:
+      - .:/code
+    environment:
+      - DJANGO_SETTINGS_MODULE=certificador.settings
+      - AWS_ACCESS_KEY=AKIAWTWZXR4WNWTUA4EM
+      - AWS_SECRET_KEY=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
+      - REGION_NAME=sa-east-1
+      - CELERY_BROKER_URL=pyamqp://guest@rabbitmq:5672//
+      - POSTGRES_DB=certificador
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres_password
+      - POSTGRES_HOST=db
+    networks:
+      - django_network
+    
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    networks:
+      - django_network
+
+  nginx:
+    image: nginx:1.19
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+    depends_on:
+      - web
+    networks:
+      - django_network
+
+networks:
+  django_network:
+    driver: bridge
+volumes:
+  postgres_data: 

@@ -1,0 +1,407 @@
+/********************** TIME **********************/
+.icon-box{
+	position: relative;
+	width: 70%;
+	margin: 0 auto;
+	z-index: 400;
+}
+.time{
+/*	border: 1px solid #999;*/
+	background: #F5F5F5;
+	border-radius: 6px;
+	width: 100%;
+	margin: 0 auto;
+	text-align: center;
+	position: relative;
+	padding-bottom: 10px;
+	overflow: hidden;
+	z-index: 300;
+	box-shadow: 0px 3px 5px rgba(0,0,0,0.3);
+}
+.time-title-1, .time-title-2{
+	border-bottom: 1px solid rgba(0,0,0,0.05);
+	background: #E8E8E8 url(title.png) repeat-x top;
+	padding: 0.3em 0;
+}
+.time-title-1{}
+.time-title-2{}
+
+.time h2{
+	margin: 0.5em 0;
+	text-transform: uppercase;
+	line-height: 100%;
+}
+.time-content{
+	margin: 0 0 10px 0;
+}
+.time .x12-1{
+	margin: 0;
+	vertical-align: top;
+	width: 60%;
+}
+.time .x12-2{
+	vertical-align: top;
+	margin-left: -3px;
+	width: 40%;
+}
+.tiempo{
+	display: inline-block;
+	vertical-align: middle;
+	font-size: 240%;
+	font-weight: bold;
+	line-height: 120%;
+	margin: 0.3em 0;
+}
+.time i{
+	font-size: 220%;
+	display: inline-block;
+	vertical-align: middle;
+}
+.fecha, .idtransaccion, .transaccion{
+	font-size: 110%;
+	margin: 0.3em 0;
+}
+.idtransaccion strong{
+	font-weight: 700;
+	text-transform: uppercase;
+}
+.transaccion{
+	width: 90%;
+	margin: 0 5%;
+	overflow: hidden;
+}
+.confirmaciones, .confirmaciones-ok{
+	display: inline-block;
+	vertical-align: middle;
+	font-size: 290%;
+	font-weight: bold;
+	line-height: 120%;
+	margin: 0.3em 0;	
+}
+.confirmaciones em, .confirmaciones-ok em{
+	display: inline-block;
+	vertical-align: middle;
+	font-size: 60%;
+	font-style: normal;
+	font-weight: normal;	
+}
+.no-ok i, .no-ok .confirmaciones{
+	color: #408CCB;	
+}
+.ok i, .ok .confirmaciones{
+	color: #78AA3E;	
+}
+.proceso{
+	position: absolute;
+	left: -12px;
+	top: -12px;
+	height: 35px;
+	z-index: 900;
+}
+.share, .icon{
+	display: inline-block;
+	vertical-align: middle;
+}
+.share{
+	line-height: 100%;
+	margin: 0;
+}
+.icon{
+	height: 30px;
+}
+.firma{
+	width: 60%;
+	margin: 10px auto 0;
+	text-align: right;
+}
+.chulengo{
+	display: inline-block;
+	vertical-align: middle;
+/*	width: 180px;*/
+}
+.prince{
+	display: inline-block;
+	vertical-align: middle;
+	margin: 0 0 0 15px;	
+}
+.mismatica{
+	display: inline-block;
+	vertical-align: middle;
+}
+/********************** TIME **********************/
+
+
+/********************** AVANZADO **********************/
+.avanzado{
+/*	border: 1px solid #999;*/
+	background: #dadada url(avanzado.png) repeat-x bottom;
+	border-radius: 6px;
+	width: 66%;
+	margin: 0 auto;
+	text-align: center;
+	position: relative;
+	padding: 20px 2%;
+	font-size: 120%;
+	box-shadow: 0px 3px 5px rgba(0,0,0,0.3);
+}
+.avanzado h2{
+	margin: 1.3em 0;
+	color: #ff0000;
+	font-weight: 700;
+	text-transform: uppercase;
+}
+.avanzado .x34-d{
+	color: #408ccb;
+}
+.avanzado .time-content{
+	padding: 10px;
+	border: 0;
+	border: 1px solid #999;	
+	text-align: left;
+	background: #F5F5F5;
+}
+.txt{
+	padding: 10px 0;
+	border-bottom: 1px solid #999;
+	overflow: hidden;
+}
+.avanzado p{
+	font-size: 120%;
+}
+.txt:nth-child(4){
+	border: 0;
+}
+/********************** AVANZADO **********************/
+
+
+@media screen and (max-width:800px){
+.time-content .x12-1{
+	border-right: 0;
+}
+.time .x12-1, .time .x12-2{
+	width: 100%;
+	margin: 0;
+}
+}
+
+@media screen and (max-width:640px){
+.icon-box{
+	width: 100%;
+}
+.avanzado{
+	width: 96%;
+	padding: 20px 2%;
+}
+}
+
+/********************* COLOR *********************/
+.danger-color{background: #ff4444;}
+.danger-color-dark{background: #CC0000;}
+.warning-color{background: #ffbb33;}
+.warning-color-dark{background: #FF8800;}
+.success-color{background: #00C851;}
+.success-color-dark{background: #00b249;}
+.info-color{background: #33b5e5;}
+.info-color-dark{background: #0099CC;}
+.default-color{background: #f4f4f4;}
+.default-color-dark{background: #eaeaea;}
+.primary-color{background: #4285F4;}
+.primary-color-dark{background: #0d47a1;}
+
+.success-color h1, .success-color h2, .success-color h3, .success-color p, .success-color a
+{
+	color: #fff;
+}
+/********************* COLOR *********************/
+
+
+/********************* BOTONES *********************/
+.btn{
+	font-size: 120%;
+	font-weight: 600;
+	text-transform: uppercase;
+	color: #fff;
+	padding: 8px 15px;
+	margin: 5px 0;
+	text-decoration: none;
+	border-radius: 5px;
+	display: inline-block;
+	background: #4285F4;
+	border-bottom: 2px solid rgba(0,0,0,0.05);
+}
+.btn:hover{
+	/*color: rgba(0,0,0,0.5);*/
+	color: #fff;
+	border-bottom: 2px solid rgba(0,0,0,0.1);
+}
+.btn i{
+	margin: 0;
+	line-height: 100%;
+}
+.back, .subir{
+	font-size: 90%;
+	padding: 6px 12px;
+	background: #efefef;
+	color: #999;
+}
+.back:hover, .subir:hover{
+	background: #eaeaea;
+	color: #777;
+}
+.btn.succes{
+	background: #00C851;
+}
+.btn.succes:hover{
+	background: #00b249;	
+}
+.btn.info{
+	background: #33b5e5;
+}
+.btn.info:hover{
+	background: #0099cc;
+}
+.btn.warning{
+	background: #ffbb33;
+}
+.btn.warning:hover{
+	background: #FF8800;
+}
+.btn.danger{
+	background: #ff4444;
+}
+.btn.danger:hover{
+	background: #cc0000;
+}
+.btn.default{
+	background: #f4f4f4;
+	color: #777;
+}
+.btn.default:hover{
+	background: #eaeaea;
+}
+.btn.pmlink{
+	background: #ededed;
+	color: #777;
+}
+.btn.pmlink:hover{
+	background: #ddd;
+}
+/********************* BOTONES *********************/
+
+/*********************** TOOLTIP ***********************/
+.tooltip{
+	position: relative;
+	display: inline-block;
+	font-size: 100%;
+	padding: 0;
+	margin: 0;
+	text-decoration: none;
+	cursor: help;
+}
+.tooltip i{
+	color: #777;
+	font-size: 100%;
+	margin: -3px 0 0 0;
+	padding: 0;
+	line-height: 100%;
+}
+.tooltip .tooltiptext{
+	visibility: hidden;
+	width: 150px;
+	background-color: #555;
+	color: #fff;
+	text-align: center;
+	padding: 10px;
+	border-radius: 6px;
+
+	/* Position the tooltip text */
+	position: absolute;
+	/*z-index: 1;*/
+	top: 125%;
+	right: 0%;
+	margin-left: -60px;
+
+	/* Fade in tooltip */
+	opacity: 0;
+	transition: opacity 1s;
+	z-index: 1000;
+	
+	text-transform: none;
+	line-height: 130%;
+	
+}
+
+/* Tooltip arrow */
+.tooltip .tooltiptext::after{
+/*	content: "";
+	position: absolute;
+	top: 100%;
+	left: 50%;
+	margin-left: -5px;
+	border-width: 5px;
+	border-style: solid;
+	border-color: #555 transparent transparent transparent;	z-index: 1000;*/
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext{
+	visibility: visible;
+	opacity: 1;
+}
+/*********************** TOOLTIP ***********************/
+
+
+
+/*********************** FORMULARIOS ***********************/
+form{
+	margin: 0;
+	padding: 0;
+}
+.form{
+	width: 56%;
+	padding: 20px 2%;
+	margin: 0 auto;
+	background: #eee url(avanzado.png) repeat-x bottom;
+	border-radius: 6px;
+	position: relative;
+	box-shadow: 0px 3px 5px rgba(0,0,0,0.3);
+}
+form h1{
+	color: #999;
+	font-size: 300%;
+	margin: 0.2em 0 0.8em;
+	text-align: center;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: -1px;
+}
+label{
+	display: block;
+	font-size: 150%;
+	line-height: 140%;
+	margin: 1.5em 0 0.3em 0;
+	color: #333;
+}
+input, textarea{
+	font-size: 14px;
+	width: 96%;
+	border: 1px #ccc solid;
+	padding: 6px 2%;
+}
+textarea{
+	height: 200px;
+}
+button{
+	border: 0;
+/*	font-size: 14px;
+	border: 1px #ccc solid;
+	padding: 6px	;
+	width: 10%;
+	margin: 0 0 0 90%;*/
+}
+	
+
+.form-group{
+	margin: 0px;
+}
+/*********************** FORMULARIOS ***********************/

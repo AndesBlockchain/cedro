@@ -1,0 +1,59 @@
+{% load static %}
+<!doctype html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+	<title>Detalles de la transacción</title>
+	<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="{% static 'alastria/css/_main.css' %}" />
+</head>
+<body>
+<section class="row">
+	<section class="content">
+		<div class="icon-box">
+
+			<img src="{% static 'alastria/img/elementos-06.png' %}" class="proceso" alt="" />
+
+		<div class="time">
+			<div class="x12-1">
+				<div class="time-title-1">
+					<h2>Tiempo transcurrido</h2>
+				</div>
+
+				<div class="time-content">
+					<i class="material-icons">access_time</i> <div class="tiempo"> {{dias_confirmacion}} días</div>
+						<div class="fecha">{{fecha_ingreso}}</div>
+					<div class="idtransaccion"><strong>ID de Transacción</strong></div>
+					<div class="transaccion">{{comprobante}}</div>
+				</div>
+			</div>
+
+			<div class="x12-2">
+				<div class="time-title-2">
+					<h2>
+						Confirmaciones
+					</h2>
+				</div>
+
+				<div class="time-content">
+
+						<div class="ok">
+						<i class="material-icons">lock</i> <div class="confirmaciones"> {{bloques_confirmacion}} </div>
+						</div>
+
+					<div class="sf"></div>
+					<a class="btn warning" href="{{link_confirmacion}}">Ver en la Red de Alastria</a>
+				</div>
+			</div>
+
+		</div>
+		</div>
+		<div class="firma">
+				<a href="https://mismatica.com/" target="_blank"><img src="{% static 'alastria/img/mismatica.png' %}" class="mismatica" alt="" /></a>
+		</div>
+
+	</section>
+</section>
+</body>
+</html>

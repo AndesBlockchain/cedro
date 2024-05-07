@@ -1,0 +1,158 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+html{
+	margin: 0;
+}
+body{
+	font-size: 62.3%;
+	font-family: 'Open Sans', sans-serif;
+	background: #444;
+	background: url(bg.gif);
+	color: #333;
+	margin: 20px 0;
+}
+h1, h2, h3, h4{
+	line-height: 120%;
+	margin: 1.5em 0 0.5em;
+	font-weight: 300;
+}
+h1{
+	font-size: 360%;
+	margin: 1.0em 0 0.5em;
+	vertical-align: middle;	
+	color: #ccc;
+}
+h1 strong{
+	font-size: 130%;
+	color: #fff;
+}
+h2{
+	font-size: 140%;
+	font-weight: 400;
+	color: #333;
+}
+h3{	
+	font-size: 220%;
+	font-weight: 400;
+	color: #999;
+}
+h4{
+	font-size: 190%;
+	font-weight: 600;
+	color: #333;
+}
+p{
+	font-size: 150%;
+	line-height: 160%;
+	margin: 1.5em 0 1em 0;
+	color: #333;
+}
+em{
+}
+strong{
+	font-weight: 600;
+}
+ul{
+	list-style: disc;
+	margin: 20px 40px 40px;
+}
+ol{
+	margin: 20px 40px 40px;
+}
+li{
+	font-size: 150%;
+	line-height: 160%;
+	margin: 0.5em 0;
+	color: #333;
+}
+a{
+	outline: none;
+	color: #7792c8;
+	cursor: pointer;
+}
+a:hover{
+	color: #222;
+}
+a:focus {
+	outline:0;
+}
+a:hover,
+a:active {
+	outline:0;
+}
+img{
+	vertical-align: top;
+	border: 0;
+	display: inline-block;
+	max-width: 100% !important;
+	width: auto\9 !important;
+	/*width: 100%;*/
+	height: auto;
+}
+.img-rounded{
+	-moz-border-radius: 100%;
+	-webkit-border-radius: 100%;
+	-khtml-border-radius: 100%;
+	border-radius: 100%;	
+}
+.center{
+	text-align: center;
+}
+iframe{
+	border: 0;
+	/*width: 98%;*/
+}
+.sf{
+	clear: both;
+}
+.line{
+	width: 100%;
+	height: 1px;
+	margin: 50px auto;
+	clear: both;
+	border-top: 1px solid #eaeaea;
+}
+.bloque{
+	white-space: nowrap;
+}
+.noshow{	
+}
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 30px;
+    width: 96%;
+    margin: 0 auto 30px;
+    height: 0;
+    overflow: hidden;
+    z-index: 800;
+    border: 10px solid #ededed;
+} 
+.video-container iframe,
+.video-container object,
+.video-container embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 800;
+}
+pre {
+    font-family: Monaco,Consolas,"Courier New",Courier,monospace;
+    font-size: .75em;
+    white-space: pre-wrap;
+    margin-bottom: 22px;
+    background: none repeat scroll 0 0 #F0F0F0;
+    overflow-x: auto;
+    word-wrap: break-word;
+    word-break: normal;
+    color: #444444;
+    padding: 2.5%;
+    line-height: 1.5;
+    border: 4px solid #DADADA;
+    text-align: left;
+    border-radius: 8px;
+}
