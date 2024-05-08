@@ -3,8 +3,6 @@ services:
   web:
     build: .
     command: python manage.py runserver 0.0.0.0:8000
-    volumes:
-      - .:/code
     ports:
       - "8000:8000"
     depends_on:
@@ -45,8 +43,6 @@ services:
     depends_on:
       - rabbitmq
       - web
-    volumes:
-      - .:/code
     environment:
       - DJANGO_SETTINGS_MODULE=certificador.settings
       - AWS_ACCESS_KEY=AKIAWTWZXR4WNWTUA4EM

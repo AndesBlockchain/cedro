@@ -44,7 +44,7 @@ def sendRecordToAlastria():
         if estado.estado == "offline":
             estado.contador=estado.contador+1
             estado.save()
-            if estado.contador > 1440:
+            if estado.contador > 720:
                 mensaje = 'Nodo Citymis fuera de linea'
                 estado.contador=0
                 estado.save()
@@ -61,7 +61,7 @@ def sendRecordToAlastria():
         if estado.estado == "no_sync":
             estado.contador=estado.contador+1
             estado.save()
-            if estado.contador > 1440:
+            if estado.contador > 720:
                 mensaje = 'Nodo Citymis fuera de sincronia'
                 estado.contador=0
                 estado.save()
