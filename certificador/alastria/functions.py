@@ -30,7 +30,7 @@ def obtener_hash(salt):
     w3.middleware_onion.inject(geth_poa_middleware,layer=0)
     contrato = w3.eth.contract(address=settings.ADDRESS_CERTIFICADOR,abi=abi_certificador)
     datos=  contrato.functions.getHash(salt).call()
-    return Web3.toHex(datos)
+    return Web3.to_hex(datos)
 
 def clean_text(texto):
     salida = texto.replace(r'\r',"")
