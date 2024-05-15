@@ -68,12 +68,19 @@ services:
     image: nginx:1.19
     ports:
       - "80:80"
+      - "443:443"
     volumes:
       - ./nginx:/etc/nginx/conf.d
+      - ./certbot/www/:/var/www/certbot/
     depends_on:
       - web
     networks:
       - django_network
+  certbot:
+    image: certbot/certbot:latest
+    volumes:
+      - ./certbot/www/:/var/www/certbot/
+      - ./certbot/conf/:/etc/letsencrypt/
 
 networks:
   django_network:
