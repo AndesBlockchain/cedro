@@ -96,7 +96,7 @@ def sendRecordToAlastria():
             registro = Registro.objects.filter(estado="procesando").first()
             registro.estado="listo"
             registro.procesado=True
-            registro.comprobante=tx_hash
+            registro.comprobante=Web3.to_hex(tx_hash)
             registro.save()
             logger.info(receipt)
             call= requests.post(registro.callback_url,data={"estado":"ok"})
@@ -104,6 +104,7 @@ def sendRecordToAlastria():
         except Exception as e:
             #Falla dura, no es posible reintentar
             logger.error("Error en la transaccion")
+            logger.error(str(e))
             registro.estado="falla"
             registro.save()
             call= requests.post(registro.callback_url,data={"estado":"falla"})

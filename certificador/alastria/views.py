@@ -37,15 +37,16 @@ def verificar(request):
     texto= request.POST['licencia']
     archivos= request.POST['archivos']
     hash_calculado= calcular_hash(salt,texto,archivos)
-    hash_guardado= obtener_hash(salt)
-    salida= {}
-    if hash_guardado==hash_calculado:
-        objeto = Registro.objects.get(salt=request.POST['salt'])
-        datos = objeto.obtenerAntiguedad()
-        iframe_data={}
-        iframe_data['dias_confirmacion'] = datos['dias_confirmacion']
-        return render(request,"iframe_confirmaciones.html",datos)
-    else:
-        return render(request,"iframe_error.html")
-
-    return JsonResponse(salida)
+    try:
+        hash_guardado= obtener_hash(salt)
+        salida= {}
+        if hash_guardado==hash_calculado:
+            objeto = Registro.objects.get(salt=request.POST['salt'])
+            datos = objeto.obtenerAntiguedad()
+            iframe_data={}
+            iframe_data['dias_confirmacion'] = datos['dias_confirmacion']
+            return render(request,"iframe_confirmaciones.html",datos)
+        else:
+            return render(request,"iframe_error.html")
+    except Exception as e:
+        return JsonResponse("Debido a la sobrecarga de trabajo de la red Alastria, no es posible verificar la informacion ahora. Reintente en unos minutos",status=404)

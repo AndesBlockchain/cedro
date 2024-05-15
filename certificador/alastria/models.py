@@ -31,8 +31,8 @@ class Registro(models.Model):
     salt= models.CharField(max_length=40)
     fecha= models.DateTimeField(blank=True)
     procesado= models.BooleanField(default=False)
-    hash= models.CharField(max_length=100,null=True,blank=True)
-    comprobante= models.CharField(max_length=100,null=True,blank=True)
+    hash= models.CharField(max_length=400,null=True,blank=True)
+    comprobante= models.CharField(max_length=400,null=True,blank=True)
     callback_url= models.CharField(max_length=400,null=True,blank=True)
     estado= models.CharField(max_length=20,default="pendiente")
     manager=RegistroManager
@@ -57,7 +57,10 @@ class Registro(models.Model):
         w3 = Web3(Web3.HTTPProvider("http://alastriat.citymis.co/rpc"))
         w3.middleware_onion.inject(geth_poa_middleware,layer=0)
         #obtenemos la transaccion
-        transaccion = w3.eth.get_transaction(self.comprobante)
+        if Web3.is_hex(self.comprobante)==False:
+            transaccion = w3.eth.get_transaction(Web3.to_hex(self.comprobante))
+        else:
+            transaccion = w3.eth.get_transaction(self.comprobante)
         bloque= transaccion['blockNumber']
         #obtenemos la informacion del bloquefge
         reciboBloque= w3.eth.get_block(bloque)
