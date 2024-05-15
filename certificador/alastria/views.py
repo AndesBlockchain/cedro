@@ -49,4 +49,4 @@ def verificar(request):
         else:
             return render(request,"iframe_error.html")
     except Exception as e:
-        return JsonResponse("Debido a la sobrecarga de trabajo de la red Alastria, no es posible verificar la informacion ahora. Reintente en unos minutos",status=404)
+        return HttpResponse("Debido a la sobrecarga de trabajo de la red Alastria, no es posible verificar la informacion ahora. Reintente en unos minutos")
