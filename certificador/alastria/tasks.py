@@ -91,11 +91,19 @@ def sendRecordToAlastria():
         registro.estado="procesando"
         registro.save()
 
+        last_sent_nonce = estado.last_sent_nonce
+        nonce = w3.eth.get_transaction_count(acct.address)
+        if nonce == last_sent_nonce:
+            logger.info("Nonce igual al ultimo enviado, encolando")
+            return "nonce igual"
+        
         try:
             nonce = w3.eth.get_transaction_count(acct.address) 
             logger.info("Wallet Nonce:" + str(nonce))
             tx = contrato.functions.setHash(registro.salt,registro.hash).build_transaction({'from':acct.address,'nonce':nonce,'gasPrice':0,'gas':30000000})
             signed_tx= acct.sign_transaction(tx)
+            estado.last_sent_nonce=nonce
+            estado.save()
             tx_hash= w3.eth.send_raw_transaction(signed_tx.rawTransaction)
             receipt = w3.eth.wait_for_transaction_receipt(tx_hash)
             registro = Registro.objects.filter(estado="procesando").first()
@@ -110,7 +118,11 @@ def sendRecordToAlastria():
             #Falla dura, no es posible reintentar
             logger.error("Error en la transaccion")
             logger.error(str(e))
-            registro.estado="falla"
-            registro.save()
-            call= requests.post(registro.callback_url,data={"estado":"falla"})
+            if str(e).find("underpriced")!=-1:
+                registro.estado="pendiente"
+                registro.save()
+            else:
+                registro.estado="falla"
+                registro.save()
+                call= requests.post(registro.callback_url,data={"estado":"falla"})
             return "falla"
