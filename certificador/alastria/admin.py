@@ -7,3 +7,4 @@ class RegistroAdmin(admin.ModelAdmin):
 
 # Register your models here.
 admin.site.register(Registro,RegistroAdmin)
+admin.site.register(Estado)

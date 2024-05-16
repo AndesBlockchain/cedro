@@ -8,7 +8,6 @@ from py_essentials import hashing as hs
 import os
 
 def calcular_hash(salt,texto,archivos):
-    print(texto)
     if len(archivos)>1:
         archivos  = archivos.split(",") 
         hashes_archivos= ""
@@ -21,8 +20,6 @@ def calcular_hash(salt,texto,archivos):
         hash= str(Web3.to_hex(Web3.solidity_keccak(['string'],[clean_text(texto)+hashes_archivos+salt])))
     else:
         hash= str(Web3.to_hex(Web3.solidity_keccak(['string'],[clean_text(texto)+salt])))
-    print(clean_text(texto))
-    print(hash)
     return hash
 
 def obtener_hash(salt):

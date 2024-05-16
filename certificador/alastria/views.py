@@ -39,6 +39,8 @@ def verificar(request):
     hash_calculado= calcular_hash(salt,texto,archivos)
     try:
         hash_guardado= obtener_hash(salt)
+        print(hash_guardado)
+        print(hash_calculado)
         salida= {}
         if hash_guardado==hash_calculado:
             objeto = Registro.objects.get(salt=request.POST['salt'])
@@ -49,4 +51,5 @@ def verificar(request):
         else:
             return render(request,"iframe_error.html")
     except Exception as e:
+        print(str(e))
         return HttpResponse("Debido a la sobrecarga de trabajo de la red Alastria, no es posible verificar la informacion ahora. Reintente en unos minutos")

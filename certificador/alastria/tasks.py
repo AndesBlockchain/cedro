@@ -79,9 +79,14 @@ def sendRecordToAlastria():
     pk=settings.PK
     acct= Account.from_key(pk)
 
+
     if Registro.objects.filter(estado="pendiente").exists():
         #si no hay registro en proceso, tomamos el primer registro pendiente
         logger.info("enviando registro a alastria")
+        if Registro.objects.filter(estado="procesando").exists():
+            logger.info("Ya hay un registro en proceso")
+            return "procesando"
+        #no hay registros en proceso
         registro = Registro.objects.filter(estado="pendiente").first()
         registro.estado="procesando"
         registro.save()
@@ -109,5 +114,3 @@ def sendRecordToAlastria():
             registro.save()
             call= requests.post(registro.callback_url,data={"estado":"falla"})
             return "falla"
-
-    logger.info("No hay registros pendientes")

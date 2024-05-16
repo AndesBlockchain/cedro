@@ -57,10 +57,15 @@ class Registro(models.Model):
         w3 = Web3(Web3.HTTPProvider("http://alastriat.citymis.co/rpc"))
         w3.middleware_onion.inject(geth_poa_middleware,layer=0)
         #obtenemos la transaccion
-        if Web3.is_hex(self.comprobante)==False:
-            transaccion = w3.eth.get_transaction(Web3.to_hex(self.comprobante))
-        else:
+        print(self.comprobante[0:2])
+        if self.comprobante[0:2]=="0x":
             transaccion = w3.eth.get_transaction(self.comprobante)
+            print("is hex")
+        else:
+            print("is not hex")
+            print(eval(self.comprobante))
+            print(Web3.to_hex(eval(self.comprobante)))
+            transaccion = w3.eth.get_transaction(Web3.to_hex(eval(self.comprobante)))
         bloque= transaccion['blockNumber']
         #obtenemos la informacion del bloquefge
         reciboBloque= w3.eth.get_block(bloque)
@@ -74,8 +79,9 @@ class Registro(models.Model):
         dias_confirmacion = tiempo_confirmacion.days
         salida= {}
         salida['comprobante'] = self.comprobante
-        salida['fecha_ingreso'] = fecha_bloque.strftime("%d/%M/%Y %H:%M:%S")
+        salida['fecha_ingreso'] = fecha_bloque.strftime("%d/%m/%Y %H:%M:%S")
         salida['dias_confirmacion']=dias_confirmacion
         salida['bloques_confirmacion']=confirmaciones
         salida['link_confirmacion']="https://blkexplorer1.telsius.alastria.io/transaction/"+self.comprobante 
+        print(salida)
         return salida

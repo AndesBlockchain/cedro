@@ -16,7 +16,7 @@ SECRET_KEY = '89!bi38-g0s8!otll+frq%%@$k^mm4ug6exnb3%0d5_87!4h!('
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['alastriagw.citymis.co','127.0.0.1','0.0.0.0']
+ALLOWED_HOSTS = ['alastriagw.citymis.co','127.0.0.1','0.0.0.0','15.188.171.154']
 
 
 # Application definition
@@ -126,6 +126,8 @@ REST_FRAMEWORK = {
         "rest_framework.permissions.AllowAny",
     ]
 }
+
+CSRF_TRUSTED_ORIGINS=['https://alastriagw.citymis.co']
 
 ADDRESS_CERTIFICADOR='0x75b1a96224C447232C17cec03108E66017621Ba2'
 RPC_URL="http://alastriat.citymis.co/rpc"
