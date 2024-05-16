@@ -80,23 +80,22 @@ def sendRecordToAlastria():
     acct= Account.from_key(pk)
 
 
+    last_sent_nonce = estado.last_sent_nonce
+    nonce = w3.eth.get_transaction_count(acct.address)
+    if nonce == last_sent_nonce:
+        logger.info("Nonce igual al ultimo enviado, encolando")
+        return "nonce igual"
+
+    logger.info("enviando registro a alastria")
+    if Registro.objects.filter(estado="procesando").exists():
+        logger.info("Ya hay un registro en proceso")
+        return "procesando"
+    #no hay registros en proceso
     if Registro.objects.filter(estado="pendiente").exists():
-        #si no hay registro en proceso, tomamos el primer registro pendiente
-        logger.info("enviando registro a alastria")
-        if Registro.objects.filter(estado="procesando").exists():
-            logger.info("Ya hay un registro en proceso")
-            return "procesando"
-        #no hay registros en proceso
         registro = Registro.objects.filter(estado="pendiente").first()
         registro.estado="procesando"
-        registro.save()
-
-        last_sent_nonce = estado.last_sent_nonce
-        nonce = w3.eth.get_transaction_count(acct.address)
-        if nonce == last_sent_nonce:
-            logger.info("Nonce igual al ultimo enviado, encolando")
-            return "nonce igual"
-        
+        registro.save()    
+        registro = Registro.objects.filter(estado="procesando").first()
         try:
             nonce = w3.eth.get_transaction_count(acct.address) 
             logger.info("Wallet Nonce:" + str(nonce))
@@ -106,7 +105,6 @@ def sendRecordToAlastria():
             estado.save()
             tx_hash= w3.eth.send_raw_transaction(signed_tx.rawTransaction)
             receipt = w3.eth.wait_for_transaction_receipt(tx_hash)
-            registro = Registro.objects.filter(estado="procesando").first()
             registro.estado="listo"
             registro.procesado=True
             registro.comprobante=Web3.to_hex(tx_hash)
@@ -126,3 +124,6 @@ def sendRecordToAlastria():
                 registro.save()
                 call= requests.post(registro.callback_url,data={"estado":"falla"})
             return "falla"
+    else:
+        logger.info("No hay registros pendientes")
+        return "no hay registros pendientes"

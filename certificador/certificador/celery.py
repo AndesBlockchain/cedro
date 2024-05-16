@@ -19,7 +19,7 @@ app.autodiscover_tasks()
 app.conf.beat_schedule = {
     'sendRecordToAlastria': {
         'task': 'sendRecordToAlastria',
-        'schedule': 60.0,
+        'schedule': 10.0,
     },
 
 }
